@@ -1,4 +1,6 @@
+// AddBoardModal.jsx
 import React, { useState } from 'react';
+import '../App.css';
 
 // Function component for the add board modal
 const AddBoardModal = ({ onClose, onCreate }) => {
