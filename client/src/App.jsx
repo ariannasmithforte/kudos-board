@@ -4,7 +4,7 @@ import Header from './components/Header.jsx'
 import Dashboard from './components/Dashboard.jsx'
 import AddBoardModal from './components/AddBoardModal.jsx'
 import Footer from './components/Footer.jsx'
-import ViewBoardDetails from './ViewBoardDetails.jsx';
+import ViewBoardDetails from './components/ViewBoardDetails.jsx';
 import {Routes, Route, useNavigate} from 'react-router-dom';
 
 
