@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Function to render the header component
-const Header = ({ searchTerm, setSearchTerm, handleSearch, handleClear, setFilter }) => {
+const Header = ({ searchTerm, setSearchTerm, handleSearch, handleClear, setFilter, onAddNewBoard}) => {
     // Array of filter options
     const filterOptions = ['All', 'Recent', 'Celebration', 'Thank You', 'Inspiration'];
     return (
@@ -28,7 +28,7 @@ const Header = ({ searchTerm, setSearchTerm, handleSearch, handleClear, setFilte
                 ))}
             </nav>
 
-            <button onClick={() => alert("TODO: Add Board logic")}>Add Board</button>
+            <button onClick={onAddNewBoard}>Add Board</button>
         </header>
     );
 };
