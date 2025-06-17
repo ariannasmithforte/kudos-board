@@ -1,16 +1,18 @@
 import React from 'react';
 
-const Header = ({searchTerm, setSearchTerm, handleSearch, handleClear, setFilter}) => {
+// Function to render the header component
+const Header = ({ searchTerm, setSearchTerm, handleSearch, handleClear, setFilter }) => {
+    // Array of filter options
     const filterOptions = ['All', 'Recent', 'Celebration', 'Thank You', 'Inspiration'];
     return (
-        <header className= "header-container">
+        <header className="header-container">
             <h1> Kudos Board</h1>
-            
-            <section className= "search-bar">
+
+            <section className="search-bar">
                 <input
-                    type= "text"
+                    type="text"
                     placeholder='Search boards...'
-                    value = {searchTerm}
+                    value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
                 <button onClick={handleSearch}>Search</button>
@@ -18,14 +20,14 @@ const Header = ({searchTerm, setSearchTerm, handleSearch, handleClear, setFilter
 
             </section>
 
-            <nav className= "filter-controls">
+            <nav className="filter-controls">
                 {filterOptions.map((option) => (
                     <button key={option} onClick={() => setFilter(option)}>
                         {option}
-                </button>
+                    </button>
                 ))}
             </nav>
-            
+
             <button onClick={() => alert("TODO: Add Board logic")}>Add Board</button>
         </header>
     );
