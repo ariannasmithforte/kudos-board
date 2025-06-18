@@ -1,13 +1,21 @@
 import React from 'react';
 
 // Function to render the header component
-const Header = ({ searchTerm, setSearchTerm, handleSearch, handleClear, setFilter, onAddNewBoard}) => {
-    // Array of filter options
-    const filterOptions = ['All', 'Recent', 'Celebration', 'Thank You', 'Inspiration'];
+const Header = () => {
     return (
         <header className="header-container">
-            <h1> Kudos Board</h1>
+            <h1>Kudos Board</h1>
+        </header>
+    );
+};
 
+// Sidebar component for search and filters
+export const Sidebar = ({ searchTerm, setSearchTerm, handleSearch, handleClear, setFilter, onAddNewBoard }) => {
+    const filterOptions = ['All', 'Recent', 'Celebration', 'Thank You', 'Inspiration'];
+
+    return (
+        <aside className="sidebar">
+            <h3>Search</h3>
             <section className="search-bar">
                 <input
                     type="text"
@@ -17,9 +25,9 @@ const Header = ({ searchTerm, setSearchTerm, handleSearch, handleClear, setFilte
                 />
                 <button onClick={handleSearch}>Search</button>
                 <button onClick={handleClear}>Clear</button>
-
             </section>
 
+            <h3>Filters</h3>
             <nav className="filter-controls">
                 {filterOptions.map((option) => (
                     <button key={option} onClick={() => setFilter(option)}>
@@ -28,8 +36,10 @@ const Header = ({ searchTerm, setSearchTerm, handleSearch, handleClear, setFilte
                 ))}
             </nav>
 
-            <button onClick={onAddNewBoard}>Add Board</button>
-        </header>
+            <button className="add-board-btn" onClick={onAddNewBoard}>
+                Add New Board
+            </button>
+        </aside>
     );
 };
 

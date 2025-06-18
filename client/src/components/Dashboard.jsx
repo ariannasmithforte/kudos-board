@@ -4,7 +4,7 @@ import React from 'react';
 const Dashboard = ({ boards, handleView, handleDelete }) => {
 
   return (
-    <>
+    <div className="dashboard-content">
       <section>
         {boards.map((board) => (
           <article key={board.id}>
@@ -16,7 +16,7 @@ const Dashboard = ({ boards, handleView, handleDelete }) => {
           </article>
         ))}
       </section>
-    </>
+    </div>
   );
 };
 

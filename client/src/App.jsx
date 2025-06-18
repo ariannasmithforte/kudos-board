@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import './App.css'
-import Header from './components/Header.jsx'
+import Header, { Sidebar } from './components/Header.jsx'
 import Dashboard from './components/Dashboard.jsx'
 import AddBoardModal from './components/AddBoardModal.jsx'
 import Footer from './components/Footer.jsx'
@@ -143,14 +143,26 @@ function App() {
           path="/"
           element={
             <>
-              <Header
-                searchTerm={searchTerm}
-                setSearchTerm={setSearchTerm}
-                handleSearch={handleSearch}
-                handleClear={handleClear}
-                setFilter={setFilter}
-                onAddNewBoard={() => setShowAddBoardModal(true)}
-              />
+              <Header />
+
+              <div className="main-layout">
+                <Sidebar
+                  searchTerm={searchTerm}
+                  setSearchTerm={setSearchTerm}
+                  handleSearch={handleSearch}
+                  handleClear={handleClear}
+                  setFilter={setFilter}
+                  onAddNewBoard={() => setShowAddBoardModal(true)}
+                />
+
+                <div className="content-area">
+                  <Dashboard
+                    boards={filteredBoards}
+                    handleDelete={handleDelete}
+                    handleView={handleView}
+                  />
+                </div>
+              </div>
 
               {showAddBoardModal && (
                 <AddBoardModal
@@ -158,11 +170,7 @@ function App() {
                   onCreate={addNewBoard}
                 />
               )}
-              <Dashboard
-                boards={filteredBoards}
-                handleDelete={handleDelete}
-                handleView={handleView}
-              />
+
               <Footer />
             </>
           }
