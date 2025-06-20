@@ -6,7 +6,7 @@ const cors = require('cors')
 app.use(express.json())
 app.use(cors())
 
-const { PrismaClient } = require('@prisma/client');
+const { PrismaClient, Prisma } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 
@@ -183,4 +183,3 @@ if (process.env.NODE_ENV !== 'test') {
 module.exports = app;
 
 //route to serve the front end
- 
