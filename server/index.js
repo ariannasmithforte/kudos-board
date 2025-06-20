@@ -24,6 +24,7 @@ app.get('/boards', async (req, res) => {
       });
       res.json(boards);
     } catch (err) {
+      console.log(err)
       res.status(500).json({ message: 'Error fetching boards' });
     }
   });

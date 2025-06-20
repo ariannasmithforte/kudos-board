@@ -12,12 +12,12 @@
   "dependencies": {
     "@prisma/client": "^6.10.0",
     "cors": "^2.8.5",
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "prisma": "^6.10.0"
   },
   "description": "",
   "devDependencies": {
     "jest": "^30.0.1",
-    "prisma": "^6.10.0",
     "supertest": "^7.1.1"
   }
 }
