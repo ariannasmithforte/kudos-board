@@ -102,9 +102,16 @@ app.post('/boards', async (req, res) => {
 app.delete('/boards/:id', async (req, res) => {
   const boardId = parseInt(req.params.id);
   try {
+    // First delete all cards associated with the board
+    await prisma.card.deleteMany({
+      where: { boardId: boardId }
+    });
+
+    // Then delete the board
     await prisma.board.delete({ where: { id: boardId } });
     res.json({ message: 'Board deleted successfully' });
   } catch (err) {
+    console.error('Error deleting board:', err);
     res.status(500).json({ message: 'Error deleting board' });
   }
 });
