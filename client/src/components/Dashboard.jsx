@@ -10,6 +10,7 @@ const Dashboard = ({ boards, handleView, handleDelete }) => {
           <article key={board.id}>
             <img src={board.image} alt={`${board.title}`} />
             <h3>{board.title}</h3>
+            <p>Author: {board.author}</p>
             <p>Category: {board.category}</p>
             <button onClick={() => handleView(board.id)}>View Board</button>
             <button onClick={() => handleDelete(board.id)}>Delete Board</button>

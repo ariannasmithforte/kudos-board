@@ -6,6 +6,7 @@ import '../App.css';
 const AddBoardModal = ({ onClose, onCreate }) => {
     const [title, setTitle] = useState('');
     const [category, setCategory] = useState('');
+    const [author, setAuthor] = useState('');
 
     // Handle form submission
     const handleSubmit = (e) => {
@@ -15,6 +16,7 @@ const AddBoardModal = ({ onClose, onCreate }) => {
     const newBoard = {
         title,
         category,
+        author,
         image: 'https://picsum.photos/200/300',
     };
     onCreate(newBoard);
@@ -48,6 +50,14 @@ const AddBoardModal = ({ onClose, onCreate }) => {
                             </select>
                         </label>
 
+                        <label>
+                            Author:
+                            <input type="text"
+                                value={author}
+                                onChange={(e) => setAuthor(e.target.value)}
+                                required
+                            />
+                        </label>
 
                         <button type="submit">Create Board</button>
                         <button onClick={onClose}>Cancel</button>

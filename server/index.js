@@ -85,10 +85,10 @@ app.get('/cards/:id', async (req, res) => {
 // POST a new board
 
 app.post('/boards', async (req, res) => {
-  const { title, image, category } = req.body;
+  const { title, image, category, author } = req.body;
   try {
     const newBoard = await prisma.board.create({
-      data: { title, image, category },
+      data: { title, image, category, author },
     });
     res.status(201).json(newBoard);
   } catch (err) {
