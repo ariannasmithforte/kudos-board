@@ -5,7 +5,7 @@
   "scripts": {
     "test": "jest",
     "start": "node index.js",
-    "build": "npm i && prisma generate && prisma migrate reset --force && primsa migrate deploy"
+    "build": "npm i && prisma generate && prisma migrate reset --force && prisma migrate deploy"
   },
   "keywords": [],
   "author": "",
