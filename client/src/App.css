@@ -16,7 +16,7 @@ body {
 
 /* Header */
 .header-container {
-  background-color: #009682;
+  background-color: #007A6A;
   color: white;
   padding: 1rem 0;
   width: 100%;
@@ -35,7 +35,7 @@ body {
 
 /* Welcome Banner */
 .welcome-banner {
-  background: linear-gradient(135deg, #009682 0%, #007a6b 100%);
+  background: linear-gradient(135deg, #007A6A 0%, #007A6A 100%);
   color: white;
   text-align: center;
   padding: 3rem 2rem;
@@ -80,10 +80,10 @@ body {
 }
 
 .sidebar h3 {
-  color: #009682;
+  color: #007A6A;
   margin-bottom: 1rem;
   font-size: 1.1rem;
-  border-bottom: 2px solid #009682;
+  border-bottom: 2px solid #007A6A;
   padding-bottom: 0.5rem;
 }
 
@@ -104,7 +104,7 @@ body {
 
 .search-bar input:focus {
   outline: none;
-  border-color: #009682;
+  border-color: #007A6A;
 }
 
 .search-bar button {
@@ -134,16 +134,16 @@ body {
 
 .filter-controls button:hover,
 .filter-controls button.active {
-  background-color: #009682;
+  background-color: #007A6A;
   color: white;
-  border-color: #009682;
+  border-color: #007A6A;
 }
 
 /* Add Board Button in Sidebar */
 .sidebar .add-board-btn {
   width: 100%;
   padding: 12px;
-  background-color: #009682;
+  background-color: #007A6A;
   color: white;
   border: none;
   border-radius: 6px;
@@ -154,7 +154,7 @@ body {
 }
 
 .sidebar .add-board-btn:hover {
-  background-color: #007a6b;
+  background-color: #007A6A;
 }
 
 /* Content Area */
@@ -165,7 +165,7 @@ body {
 
 /* Footer */
 .footer {
-  background-color: #009682;
+  background-color: #007A6A;
   color: white;
   padding: 1rem 0;
   width: 100%;
@@ -200,7 +200,7 @@ body {
   text-align: center;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   transition: transform 0.3s, box-shadow 0.3s;
-  border-top: 4px solid #009682;
+  border-top: 4px solid #007A6A;
 }
 
 .dashboard-content article:hover {
@@ -217,7 +217,7 @@ body {
 }
 
 .dashboard-content article h3 {
-  color: #009682;
+  color: #007A6A;
   margin-bottom: 0.5rem;
   font-size: 1.2rem;
 }
@@ -243,7 +243,7 @@ body {
 
 /* Buttons */
 button {
-  background-color: #009682;
+  background-color: #007A6A;
   color: white;
   border: none;
   padding: 10px 16px;
@@ -255,7 +255,7 @@ button {
 }
 
 button:hover {
-  background-color: #007a6b;
+  background-color: #007A6A;
   transform: translateY(-1px);
 }
 
@@ -265,12 +265,12 @@ button:active {
 
 button.secondary {
   background-color: transparent;
-  color: #009682;
-  border: 2px solid #009682;
+  color: #007A6A;
+  border: 2px solid #007A6A;
 }
 
 button.secondary:hover {
-  background-color: #009682;
+  background-color: #007A6A;
   color: white;
 }
 
@@ -292,7 +292,7 @@ button.secondary:hover {
   text-align: center;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   transition: transform 0.3s, box-shadow 0.3s;
-  border-top: 4px solid #009682;
+  border-top: 4px solid #007A6A;
 }
 
 .card:hover {

@@ -45,7 +45,7 @@ const AddBoardModal = ({ onClose, onCreate }) => {
                             >
                                 <option value="">Select a category:</option>
                                 <option value="Celebration">Celebration</option>
-                                <option value="Thank you">Thank you</option>
+                                <option value="Thank You">Thank You</option>
                                 <option value="Inspiration">Inspiration</option>
                             </select>
                         </label>
