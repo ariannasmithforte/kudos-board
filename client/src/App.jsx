@@ -7,6 +7,7 @@ import Footer from './components/Footer.jsx'
 import ViewBoardDetails from './components/ViewBoardDetails.jsx';
 import {Routes, Route, useNavigate} from 'react-router-dom';
 
+const BACKEND_API = import.meta.env.VITE_BACK_END_URL
 
 
 
@@ -29,7 +30,7 @@ function App() {
 
   const fetchBoards = async () => {
     try {
-      const response = await fetch('http://localhost:8000/boards');
+      const response = await fetch(`${BACKEND_API}/boards`);
       if (response.ok) {
         const data = await response.json();
         setBoards(data);
@@ -58,7 +59,7 @@ function App() {
   // Functions to handle delete and view
   const handleDelete = async (id) => {
     try {
-      const response = await fetch(`http://localhost:8000/boards/${id}`, {
+      const response = await fetch(`${BACKEND_API}/boards/${id}`, {
         method: 'DELETE',
       });
       if (response.ok) {
@@ -95,7 +96,7 @@ function App() {
   // Function to add a new board
   const addNewBoard = async (newBoard) => {
     try {
-      const response = await fetch('http://localhost:8000/boards', {
+      const response = await fetch(`${BACKEND_API}/boards`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

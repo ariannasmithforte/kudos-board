@@ -4,6 +4,8 @@ import Footer from './Footer';
 // React router to switch between pages
 import { useParams, useNavigate } from 'react-router-dom';
 
+const BACKEND_API = import.meta.env.VITE_BACK_END_URL;
+
 const ViewBoardDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -20,7 +22,7 @@ const ViewBoardDetails = () => {
   // Function to fetch board details
   const fetchBoardDetails = async () => {
     try {
-      const response = await fetch(`http://localhost:8000/boards/${id}`);
+      const response = await fetch(`${BACKEND_API}/boards/${id}`);
       if (response.ok) {
         const data = await response.json();
         setBoard(data);
@@ -63,7 +65,7 @@ const ViewBoardDetails = () => {
     };
 
     try {
-      const response = await fetch(`http://localhost:8000/boards/${id}/cards`, {
+      const response = await fetch(`${BACKEND_API}/boards/${id}/cards`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -88,7 +90,7 @@ const ViewBoardDetails = () => {
   // Function to increment likes on a card
   const handleLike = async (cardId) => {
     try {
-      const response = await fetch(`http://localhost:8000/cards/${cardId}/like`, {
+      const response = await fetch(`${BACKEND_API}/cards/${cardId}/like`, {
         method: 'POST',
       });
 
@@ -108,7 +110,7 @@ const ViewBoardDetails = () => {
   // Function to delete a card
   const handleDelete = async (cardId) => {
     try {
-      const response = await fetch(`http://localhost:8000/cards/${cardId}`, {
+      const response = await fetch(`${BACKEND_API}/cards/${cardId}`, {
         method: 'DELETE',
       });
 
