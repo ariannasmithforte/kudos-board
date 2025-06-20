@@ -123,6 +123,11 @@ function App() {
             <>
               <Header />
 
+              <div className="welcome-banner">
+                <h1>Welcome to the Kudos Board</h1>
+                <p>Share appreciation, celebrate achievements, and spread positivity with your team!</p>
+              </div>
+
               <div className="main-layout">
                 <Sidebar
                   searchTerm={searchTerm}

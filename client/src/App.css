@@ -33,6 +33,31 @@ body {
   margin-bottom: 1rem;
 }
 
+/* Welcome Banner */
+.welcome-banner {
+  background: linear-gradient(135deg, #009682 0%, #007a6b 100%);
+  color: white;
+  text-align: center;
+  padding: 3rem 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.welcome-banner h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.welcome-banner p {
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto;
+  opacity: 0.95;
+  line-height: 1.6;
+}
+
 /* Main Layout with Sidebar */
 .main-layout {
   display: flex;
