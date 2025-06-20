@@ -90,7 +90,7 @@ function App() {
   } else if (filter === 'Inspiration') {
     filteredBoards = filteredBoards.filter((board) => board.category === 'Inspiration');
   } else if (filter === 'Recent') {
-    filteredBoards = filteredBoards.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+    filteredBoards = filteredBoards.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0, 6);
   }
 
   // Function to add a new board
