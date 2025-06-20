@@ -1,17 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../App.css';
+import Footer from './Footer';
 // React router to switch between pages
 import { useParams, useNavigate } from 'react-router-dom';
 
-const ViewBoardDetails = ({ boards }) => {
+const ViewBoardDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
+  const [board, setBoard] = useState(null);
+  const [cards, setCards] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const board = boards.find((board) => board.id === Number(id));
+  // Fetch board data from server
+  useEffect(() => {
+    fetchBoardDetails();
+  }, [id]);
 
-
-  const [cards, setCards] = useState(board?.cards || []);
+  // Function to fetch board details
+  const fetchBoardDetails = async () => {
+    try {
+      const response = await fetch(`http://localhost:8000/boards/${id}`);
+      if (response.ok) {
+        const data = await response.json();
+        setBoard(data);
+        setCards(data.cards || []);
+      } else {
+        console.error('Failed to fetch board details');
+      }
+    } catch (error) {
+      console.error('Error fetching board details:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
 
   const [title, setTitle] = useState('');
@@ -23,38 +45,81 @@ const ViewBoardDetails = ({ boards }) => {
 
   const [showModal, setShowModal] = useState(false);
 
-  if (!board) {
+  // Check if board is loading or not
+  if (loading) {
+    return <div>Loading board details...</div>;
+  }
 
+  if (!board) {
     return <div>Board not found</div>;
   }
 
   // Function to add new card to cards state
-  const handleAddCard = () => {
-    // Default likes to 0
+  const handleAddCard = async () => {
     const newCard = {
-      id: cards.length + 1,
       title: title,
       description: description,
       gif: gif,
-      likes: 0,
     };
 
-    setCards((prev) => [...prev, newCard]); // Add new card to list
-    setTitle(''); // Reset form fields
-    setDescription('');
-    setGif('');
+    try {
+      const response = await fetch(`http://localhost:8000/boards/${id}/cards`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newCard),
+      });
+
+      if (response.ok) {
+        const createdCard = await response.json();
+        setCards((prev) => [...prev, createdCard]); // Add new card to list
+        setTitle(''); // Reset form fields
+        setDescription('');
+        setGif('');
+      } else {
+        console.error('Failed to create card');
+      }
+    } catch (error) {
+      console.error('Error creating card:', error);
+    }
   };
 
   // Function to increment likes on a card
-  const handleLike = (id) => {
-    setCards((prev) =>
-      prev.map((card) => (card.id === id ? { ...card, likes: card.likes + 1 } : card))
-    );
+  const handleLike = async (cardId) => {
+    try {
+      const response = await fetch(`http://localhost:8000/cards/${cardId}/like`, {
+        method: 'POST',
+      });
+
+      if (response.ok) {
+        const updatedCard = await response.json();
+        setCards((prev) =>
+          prev.map((card) => (card.id === cardId ? updatedCard : card))
+        );
+      } else {
+        console.error('Failed to like card');
+      }
+    } catch (error) {
+      console.error('Error liking card:', error);
+    }
   };
 
   // Function to delete a card
-  const handleDelete = (id) => {
-    setCards((prev) => prev.filter((card) => card.id !== id));
+  const handleDelete = async (cardId) => {
+    try {
+      const response = await fetch(`http://localhost:8000/cards/${cardId}`, {
+        method: 'DELETE',
+      });
+
+      if (response.ok) {
+        setCards((prev) => prev.filter((card) => card.id !== cardId));
+      } else {
+        console.error('Failed to delete card');
+      }
+    } catch (error) {
+      console.error('Error deleting card:', error);
+    }
   };
 
   // Function to search Giphy API for GIFs
@@ -175,6 +240,7 @@ const ViewBoardDetails = ({ boards }) => {
           ))}
         </section>
       </div>
+      <Footer />
     </>
   );
 };

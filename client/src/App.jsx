@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 import Header, { Sidebar } from './components/Header.jsx'
 import Dashboard from './components/Dashboard.jsx'
@@ -18,79 +18,30 @@ function App() {
   const [showAddBoardModal, setShowAddBoardModal] = useState(false);
   const navigate = useNavigate();
 
+ // State to store the list of boards
+  const [boards, setBoards] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  // Placeholder data for now
-  const [boards, setBoards] = useState([
-    {
-      id: 1,
-      title: 'Team Celebration',
-      image: 'https://picsum.photos/200/300',
-      category: 'Celebration',
-      createdAt: new Date('2025-06-14T10:00:00'),
-      cards: [
-        {
-          id: 1,
-          title: '🎉 Great Job!',
-          description: 'Big shoutout to the dev team for crushing the deadline!',
-          gif: 'https://media.giphy.com/media/26BRzozg4TCBXv6QU/giphy.gif',
-          likes: 3,
-        },
-        {
-          id: 2,
-          title: '👏 Applause!',
-          description: 'Let’s celebrate Sarah’s promotion! 🎉',
-          gif: 'https://media.giphy.com/media/5GoVLqeAOo6PK/giphy.gif',
-          likes: 5,
-        }
-      ]
-    },
-    {
-      id: 2,
-      title: 'Thank You Notes',
-      image: 'https://picsum.photos/200/300',
-      category: 'Thank You',
-      createdAt: new Date('2025-06-12T14:00:00'),
-      cards: [
-        {
-          id: 1,
-          title: 'Thank you, IT!',
-          description: 'Thanks for fixing my laptop in 15 mins flat!',
-          gif: 'https://media.giphy.com/media/xUPGcxpCV81ebKhGxy/giphy.gif',
-          likes: 2,
-        },
-        {
-          id: 2,
-          title: 'Props to Janice!',
-          description: 'She stayed late to help me finish my slides. 🧡',
-          gif: 'https://media.giphy.com/media/JltOMwYmi0VrO/giphy.gif',
-          likes: 4,
-        }
-      ]
-    },
-    {
-      id: 3,
-      title: 'Morning Motivation',
-      image: 'https://picsum.photos/200/300',
-      category: 'Inspiration',
-      createdAt: new Date('2025-06-16T09:00:00'),
-      cards: [
-        {
-          id: 1,
-          title: 'Start Strong 💪',
-          description: 'Today is a new chance to be better. Go for it!',
-          gif: 'https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif',
-          likes: 6,
-        },
-        {
-          id: 2,
-          title: 'You Got This!',
-          description: 'Don’t stop now — your breakthrough is coming.',
-          gif: 'https://media.giphy.com/media/l4FGuhL4U2WyjdkaY/giphy.gif',
-          likes: 7,
-        }
-      ]
+  // Fetch boards from server on component mount
+  useEffect(() => {
+    fetchBoards();
+  }, []);
+
+  const fetchBoards = async () => {
+    try {
+      const response = await fetch('http://localhost:8000/boards');
+      if (response.ok) {
+        const data = await response.json();
+        setBoards(data);
+      } else {
+        console.error('Failed to fetch boards');
+      }
+    } catch (error) {
+      console.error('Error fetching boards:', error);
+    } finally {
+      setLoading(false);
     }
-  ]);
+  };
 
 
   // Functions to handle search and clear
@@ -105,8 +56,19 @@ function App() {
   };
 
   // Functions to handle delete and view
-  const handleDelete = (id) => {
-    setBoards((prevBoards) => prevBoards.filter((board) => board.id !== id));
+  const handleDelete = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:8000/boards/${id}`, {
+        method: 'DELETE',
+      });
+      if (response.ok) {
+        setBoards((prevBoards) => prevBoards.filter((board) => board.id !== id));
+      } else {
+        console.error('Failed to delete board');
+      }
+    } catch (error) {
+      console.error('Error deleting board:', error);
+    }
   };
 
 
@@ -131,8 +93,24 @@ function App() {
   }
 
   // Function to add a new board
-  const addNewBoard = (newBoard) => {
-    setBoards((prevBoards) => [...prevBoards, newBoard]);
+  const addNewBoard = async (newBoard) => {
+    try {
+      const response = await fetch('http://localhost:8000/boards', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newBoard),
+      });
+      if (response.ok) {
+        const createdBoard = await response.json();
+        setBoards((prevBoards) => [...prevBoards, createdBoard]);
+      } else {
+        console.error('Failed to create board');
+      }
+    } catch (error) {
+      console.error('Error creating board:', error);
+    }
   };
 
 
@@ -156,11 +134,15 @@ function App() {
                 />
 
                 <div className="content-area">
-                  <Dashboard
-                    boards={filteredBoards}
-                    handleDelete={handleDelete}
-                    handleView={handleView}
-                  />
+                  {loading ? (
+                    <div>Loading boards...</div>
+                  ) : (
+                    <Dashboard
+                      boards={filteredBoards}
+                      handleDelete={handleDelete}
+                      handleView={handleView}
+                    />
+                  )}
                 </div>
               </div>
 
@@ -175,7 +157,7 @@ function App() {
             </>
           }
         />
-        <Route path="/board/:id" element={<ViewBoardDetails boards={boards} />} />
+        <Route path="/board/:id" element={<ViewBoardDetails />} />
       </Routes>
     </>
   )
