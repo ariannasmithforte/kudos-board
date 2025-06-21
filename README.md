@@ -77,7 +77,7 @@ Deployed Application (**required**): [Kudos Board Deployed Site](https://kudos-b
   - [x] Update the vote count on the card tile when a user clicks the upvote icon.
   - [x] When the upvote icon is clicked the upvote count increases by 1. 
   - [x] A user can upvote a card multiple times. 
-- [ ] **Delete Card**
+- [x] **Delete Card**
   - [x] Users can delete cards.
   - [x] When the user clicks the delete button for a card, the card disappears from the grid of cards. 
 - [x] **Deployment**
@@ -155,8 +155,8 @@ As for my project demo, I feel that alot went well, but the problems started rol
 
 
 ### Open-source libraries used
-https://react.dev/reference/react
-https://www.w3schools.com/react/default.asp
+-https://react.dev/reference/react
+-https://www.w3schools.com/react/default.asp
 
 
 
