@@ -136,7 +136,7 @@ Deployed Application (**required**): [Kudos Board Deployed Site](https://kudos-b
 
 ### Walkthrough Video
 
-`ADD_EMBEDDED_CODE_HERE`
+https://www.loom.com/share/131b14b2084e45d498d190da054ac46d?sid=eb5862d1-06eb-46b7-83e8-ac8db69f8ed2
 
 ### Reflection
 
@@ -162,5 +162,4 @@ https://www.w3schools.com/react/default.asp
 
 ### Shout out
 
-Give a shout out to somebody from your cohort that especially helped you during your project. This can be a fellow peer, instructor, TA, mentor, etc.
-
+Thank you to the staff and my classmates for all their help and support this week!
